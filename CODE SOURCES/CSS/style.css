@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Header de la page d'accueil */ 
+
+#HeaderFlex{
+    display: flex;
+    background-color: #FFF6E0;
+    padding: 10px 0;
+}
+
+
+#SearchContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    width: 50%;
+    margin: 0 auto;
+}
+
+#searchBar{
+    background-color: transparent;
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 5px 50px;
+}
+
+
+
+footer {
+	color:black;
+	text-align: center;
+	padding: 15px 0;
+	width: 100%;
+	bottom: 0;
+	font-size: large;
+	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+

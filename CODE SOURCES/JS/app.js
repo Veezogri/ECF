@@ -1,4 +1,4 @@
-/*const pokemonList = document.querySelector('#pokemonList');
+const pokemonList = document.querySelector('#pokemonList');
 const searchBar = document.querySelector('#searchBar');
 
 // Fonction pour récupérer les données de l'API
@@ -79,4 +79,4 @@ searchBar.addEventListener("keyup", (e) => {
 
 // Charger les Pokémon au chargement de la page
 
-fetchPokemon();*/
+fetchPokemon();
