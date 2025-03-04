@@ -5,7 +5,7 @@ const searchBar = document.querySelector('#searchBar');
 
 async function fetchPokemon() {
 
-    for (let i = 1; i <= 1304; i++) { 
+    for (let i = 1; i <= 151; i++) { 
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
 
         const pokemon = await res.json();
@@ -25,6 +25,7 @@ function displayPokemon(pokemon) {
     const pokemonCard = document.createElement("div");
 
     pokemonCard.classList.add("pokemon-card");
+    const types = pokemon.types.map(type => type.type.name).join(", ");
 
 
 
@@ -35,6 +36,9 @@ function displayPokemon(pokemon) {
         <h3>${pokemon.name}</h3>
 
         <p>#${pokemon.id}</p>
+        <p>Type: ${types}</p>
+
+        
 
         <button class="DetailsPokemon" onclick="showDetails(${pokemon.id})">Détails</button>
 

@@ -13,6 +13,7 @@
     padding: 20px 0;
     color: white;
     align-items: center;
+    position: relative;
 }
 
 #TitleHeader{
@@ -109,14 +110,97 @@ footer {
 }
 
 
+
+#Stats ul{
+    list-style: none;
+}
+
+.Retour-Arrière{
+    cursor: pointer;
+    position: absolute;
+    left: 10%;
+    top: 40%;
+}
+
+
 #Card-Details{
     background:#abe8b6;
 	text-align: center;
 	border-radius: 10px;
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    border-radius: 16px;
+    border: 1px solid rgb(0, 0, 0);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+
+/* couleur type etc */ 
+.type {
+	padding: 5px 10px;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	margin: 2px;
+	display: inline-block;
+}
+/* Couleurs des types */
+.type.grass {
+	background-color: #78C850;
+}
+
+.type.flying{
+    background-color: #3c382f;
+}
+.type.fire {
+	background-color: #F08030;
+}
+.type.water {
+	background-color: #6890F0;
+}
+.type.bug {
+	background-color: #A8B820;
+}
+.type.normal {
+	background-color: #A8A878;
+}
+.type.poison {
+	background-color: #A040A0;
+}
+.type.electric {
+	background-color: #F8D030;
+}
+.type.ground {
+	background-color: #E0C068;
+}
+.type.fairy {
+	background-color: #EE99AC;
+}
+.type.fighting {
+	background-color: #C03028;
+}
+.type.psychic {
+	background-color: #F85888;
+}
+.type.rock {
+	background-color: #B8A038;
+}
+.type.ghost {
+	background-color: #705898;
+}
+.type.ice {
+	background-color: #98D8D8;
+}
+.type.dragon {
+	background-color: #7038F8;
+}
+.type.steel {
+	background-color: #B8B8D0;
+}
+.type.dark {
+	background-color: #705848;
 }
