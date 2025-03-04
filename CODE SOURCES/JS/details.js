@@ -2,7 +2,7 @@ const params = new URLSearchParams(window.location.search);
 
 const pokemonId = params.get("id");
 
-const pokemonDetails = document.getElementById("pokemonDetails");
+const pokemonDetails = document.getElementById("Card-Details");
 
 
 
