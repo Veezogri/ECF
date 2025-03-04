@@ -5,8 +5,7 @@ const searchBar = document.querySelector('#searchBar');
 
 async function fetchPokemon() {
 
-    for (let i = 1; i <= 50; i++) { // Récupérer les 50 premiers Pokémon
-
+    for (let i = 1; i <= 1304; i++) { 
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
 
         const pokemon = await res.json();
@@ -37,7 +36,7 @@ function displayPokemon(pokemon) {
 
         <p>#${pokemon.id}</p>
 
-        <button onclick="showDetails(${pokemon.id})">Détails</button>
+        <button class="DetailsPokemon" onclick="showDetails(${pokemon.id})">Détails</button>
 
     `;
 

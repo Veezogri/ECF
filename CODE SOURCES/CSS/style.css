@@ -8,8 +8,21 @@
 
 #HeaderFlex{
     display: flex;
-    background-color: #FFF6E0;
-    padding: 10px 0;
+    flex-direction: column;
+    background-color: #3c382f;
+    padding: 20px 0;
+    color: white;
+    align-items: center;
+}
+
+#TitleHeader{
+    font-family: "Protest Strike", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 30px;
+    
+}
+
+#MainContainer{
+    background-color: wheat;
 }
 
 
@@ -18,17 +31,56 @@
     flex-direction: row;
     justify-content: center;
     gap: 10px;
-    width: 50%;
-    margin: 0 auto;
 }
 
 #searchBar{
     background-color: transparent;
-    border: 1px solid gray;
+    border: 1px solid rgb(211, 203, 203);
     border-radius: 8px;
     padding: 5px 50px;
+    color: white;
+}
+/*
+
+/* Section PokemonList */ 
+#pokemonList{
+    padding: 20px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    background-color: whitesmoke;
+    width: 90%;
+    margin: 0 auto;
 }
 
+.pokemon-card{
+    background:#eeecec;
+	padding: 30px;
+	width: 270px;
+	text-align: center;
+	border-radius: 10px;
+}
+
+.pokemon-card img {
+	width: 100%;
+	border-radius: 100%;
+	object-fit: contain;
+	
+}
+
+.pokemon-card img:hover {
+	transform: scale(1.1);
+	transition: transform 0.5s ease-in-out;
+
+}
+
+.DetailsPokemon{
+    padding: 8px 20px;
+    background-color: rgb(42, 42, 119);
+    color: wheat;
+    cursor: pointer;
+}
 
 
 footer {
