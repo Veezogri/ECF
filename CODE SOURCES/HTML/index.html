@@ -6,6 +6,7 @@
     <title>Pokédex</title>
     <script src="../JS/app.js" defer></script>
     <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 </head>
 <body>
 
@@ -15,9 +16,9 @@
         </figure>
     
         <div id="SearchContainer">
-            <input type="text" id="searchBar" placeholder="Rechercher un Pokémon...">
+            <input type="text" id="searchBar" placeholder="Rechercher un Pokémon..."><img id="IMGSEARCHBAR" src="../../IMG/pikachu.png" alt="">
         </div>
-        <a href="MyPokemonTeam.html">Mon équipe </a>
+        <a id="HeaderNavMonEquipe" href="MyPokemonTeam.html"><img src="../../IMG/pokemon-aller.png" alt="">Mon équipe de Pokémon</a>
 
     
         <div id="Filters">
@@ -37,7 +38,9 @@
             </select>
             
     
-            <button id="resetFilters">Réinitialiser</button>
+            <button id="resetFilters"><span class="material-symbols-outlined">
+                restart_alt
+                </span>Réinitialiser</button>
         </div>
     </header>
     
@@ -52,6 +55,7 @@
 
     <footer>
         <p>Projet Pokédex - RIAL Fares</p>
+        
     </footer>
 
 </body>

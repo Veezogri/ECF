@@ -35,6 +35,24 @@
                 pokemonTypes.appendChild(typeElement);
             });
 
+             // Associer les statistiques à leur couleur spécifique
+
+        const statColors = {
+
+            "hp": "hp",
+
+            "attack": "atk",
+
+            "defense": "def",
+
+            "special-attack": "satk",
+
+            "special-defense": "sdef",
+
+            "speed": "spd"
+
+        };
+
             const statsHTML = pokemon.stats.map(stat => {
 
                 const statName = stat.stat.name.toUpperCase().replace("SPECIAL-", "S");

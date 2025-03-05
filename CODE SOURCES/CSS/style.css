@@ -47,6 +47,31 @@
     background-size: cover;
 }
 
+#HeaderNavMonEquipe img{
+    width: 50px;
+    
+
+}
+
+#HeaderNavMonEquipe{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color:black;
+    font-family: cursive;
+    font-weight: bold;
+    
+}
+
+#resetFilters{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
+
 @keyframes bounceLogo {
     0% { transform: scale(0.8); opacity: 0; }
     50% { transform: scale(1.1); opacity: 1; }
@@ -94,6 +119,10 @@
     padding: 8px;
     background: transparent;
     font-size: 16px;
+}
+
+#IMGSEARCHBAR{
+    width: 30px;
 }
 
 
@@ -195,6 +224,8 @@
     position: absolute;
     left: 11%;
     cursor: pointer;
+    color: whitesmoke;
+    
 }
 #pokemonList {
     display: grid;
@@ -738,6 +769,8 @@ footer {
     transition: width 0.8s ease-in-out;
 
 }
+
+
 
 
 #TypeSection h3{
