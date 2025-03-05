@@ -556,6 +556,12 @@ footer {
     border: 2px solid #fff;
 }
 
+#Evolutions h3{
+    color: whitesmoke;
+    font-family: monospace;
+    text-transform: uppercase;
+}
+
 
 
 .evolution img:hover {
@@ -567,7 +573,8 @@ footer {
     font-size: 16px;
     font-weight: bold;
     margin-top: 8px;
-    color: #333;
+    color: whitesmoke;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* Flèche animée entre les évolutions */
