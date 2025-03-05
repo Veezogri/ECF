@@ -9,7 +9,7 @@ let allPokemon = []; // Stocke tous les Pokémon pour le filtrage
 
 // Fonction pour récupérer les Pokémon
 async function fetchPokemon() {
-    for (let i = 1; i <= 151; i++) {
+    for (let i = 1; i <= 251; i++) {
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
         const pokemon = await res.json();
         allPokemon.push(pokemon);
@@ -107,7 +107,7 @@ function addToTeam(id) {
     const pokemon = allPokemon.find(p => p.id === id);
     if (!pokemon) return;
 
-    // Afficher l'animation de la Pokéball
+    // Affiche l'animation de la Pokéball en appelant la fonction pour
     showPokeballAnimation(() => {
         // Ajouter le Pokémon après l'animation
         const teamCard = document.createElement("div");

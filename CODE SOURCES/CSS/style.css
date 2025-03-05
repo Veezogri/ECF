@@ -11,11 +11,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(90deg, #FF1C1C, #FF5733);
     padding: 15px 40px;
     color: white;
-    border-bottom: 3px solid #ff5733;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-image: url(../../IMG/bgfig.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 @keyframes bounceLogo {
@@ -41,9 +42,17 @@
     background: rgba(255, 255, 255, 0.9);
     border-radius: 25px;
     padding: 8px 15px;
-    width: 280px;
+    width: 400px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
+}
+
+#SearchContainer ::placeholder{
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    color: #3c382f;
+
 }
 
 #SearchContainer:hover {
@@ -59,11 +68,7 @@
     font-size: 16px;
 }
 
-#SearchContainer span {
-    color: #ff5733;
-    font-size: 20px;
-    cursor: pointer;
-}
+
 
 /*  FILTRES MODERNES  */
 #Filters {
@@ -72,7 +77,8 @@
 }
 
 #Filters select, #resetFilters {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(10, 10, 10, 0.9);
+    color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 12px;
@@ -84,12 +90,13 @@
 }
 
 #Filters select:hover, #resetFilters:hover {
-    background: rgba(255, 255, 255, 1);
+    background: white;
+    color: black;
     transform: translateY(-2px);
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 }
 #MainContainer{
-    background-color: whitesmoke;
+    background-image: url(../../IMG/body_gray_bg.png);
 }
 /*  RÉPONSIVE DESIGN  */
 /*  Mobile (max 600px) */
@@ -155,12 +162,24 @@
 /*
 
 /*  GRILLE DES POKÉMON  */
+.Retour-Arrière{
+    position: absolute;
+    left: 11%;
+    cursor: pointer;
+}
 #pokemonList {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 cartes par ligne */
     gap: 30px; /* Espace entre les cartes */
     padding: 20px;
     justify-content: center;
+    position: relative;
+    background-image: url(../../IMG/container_bg.png);
+    background-color: whitesmoke;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 10px;
+    
 }
 /*  STYLE DES CARTES POKÉMON  */
 .pokemon-card {
@@ -173,6 +192,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #FFFFFF;
     color: white; /* Texte en blanc pour contraster */
 }
 
@@ -189,7 +209,7 @@
 }
 
 /*  COULEUR DE FOND PAR TYPE  */
-.pokemon-card.grass { box-shadow: 6px 12px 12px #78C850; }
+.pokemon-card.grass { box-shadow: 0px 4px 12px #1c4a05; }
 .pokemon-card.fire { box-shadow: 0 4px 12px #F08030; }
 .pokemon-card.water { box-shadow: 0 4px 12px #6890F0; }
 .pokemon-card.electric { box-shadow: 0 4px 12px #F8D030; }
@@ -395,11 +415,9 @@ footer {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    background-color: #f8f8f8;
     border-radius: 12px;
     width: 80%;
     margin: 20px auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -417,7 +435,7 @@ footer {
 
 /*  CARTE DES DETAILS  */
 #Card-Details {
-    background: #fff;
+    background-color: whitesmoke;
     text-align: center;
     border-radius: 16px;
     width: 400px;
@@ -496,18 +514,20 @@ footer {
     transform: translateY(0);
 }
 
+
+
 /* Image de l'évolution */
 .evolution img {
     width: 120px;
     border-radius: 50%;
-    background-color: white;
     padding: 10px;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+
+
 .evolution img:hover {
     transform: scale(1.15);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Nom du Pokémon */
@@ -561,7 +581,7 @@ footer {
 .stat-fill {
     height: 100%;
     border-radius: 5px;
-    background: linear-gradient(to right, #ff7f50, #ff4500);
+    background: linear-gradient(to right, #ff7f50, #740c00);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -728,13 +748,13 @@ footer {
 /* comparaison de pokémon */
 /*  SECTION ÉQUIPE POKÉMON  */
 #MyTeam {
-    background: linear-gradient(135deg, #ff1c1c, #ff5733);
+    background-color: transparent;
     padding: 20px;
     border-radius: 12px;
     text-align: center;
     width: 90%;
     margin: 20px auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(254, 251, 251, 0.2);
     position: relative;
     transition: all 0.3s ease-in-out;
 }
@@ -754,7 +774,6 @@ footer {
     justify-content: center;
     gap: 20px;
     padding: 15px;
-    background: rgba(255, 255, 255, 0.9);
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
