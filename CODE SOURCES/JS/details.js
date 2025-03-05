@@ -35,14 +35,30 @@
                 pokemonTypes.appendChild(typeElement);
             });
 
-            // Affichage des statistiques avec barres de progression
-            statsContainer.innerHTML = pokemon.stats.map(s =>
-                `<div class="stat">
-                    <div class="stat-bar">
-                        <div class="stat-fill" style="width: ${s.base_stat}%;"><span>${s.stat.name}: ${s.base_stat}</span></div>
+            const statsHTML = pokemon.stats.map(stat => {
+
+                const statName = stat.stat.name.toUpperCase().replace("SPECIAL-", "S");
+    
+                return `
+    
+                    <div class="stat">
+    
+                        <span class="stat-label">${statName}</span>
+    
+                        <span class="stat-value">${stat.base_stat}</span>
+    
+                        <div class="stat-bar">
+    
+                            <div class="stat-fill" style="width: ${stat.base_stat}%;"></div>
+    
+                        </div>
+    
                     </div>
-                </div>`
-            ).join("");
+    
+                `;
+    
+            }).join("");
+            statsContainer.innerHTML = `${statsHTML}`;
 
             // Récupérer et afficher les évolutions avec flèches
             await loadEvolutionChain(speciesData.evolution_chain.url);

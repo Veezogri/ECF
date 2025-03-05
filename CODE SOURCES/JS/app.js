@@ -25,7 +25,9 @@ let displayedPokemonCount = 0; // Compteur de Pokémon affichés
 
 const batchSize = 20; // Nombre de Pokémon affichés à la fois
 
-
+// fonction qui va chercher les pokemon de x à y (batchSize)
+// limit=y&offset=x
+// en gros x point de départ et y le nombre de pokemons qui seront affichés 
 
 // Fonction pour récupérer les Pokémon
 
