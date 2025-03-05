@@ -6,7 +6,35 @@
 
 /* Header de la page d'accueil */ 
 
+.team-button {
 
+    display: inline-block;
+
+    background-color: #ff1c1c;
+
+    color: white;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: background 0.3s ease-in-out;
+
+    margin: 10px 0;
+
+}
+
+
+
+.team-button:hover {
+
+    background-color: #d01818;
+
+}
 #HeaderFlex {
     display: flex;
     justify-content: space-between;
@@ -67,6 +95,7 @@
     background: transparent;
     font-size: 16px;
 }
+
 
 
 
@@ -522,6 +551,9 @@ footer {
     border-radius: 50%;
     padding: 10px;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 4px 0px #212121;
+    background-color: #494747;
+    border: 2px solid #fff;
 }
 
 

@@ -1,60 +1,156 @@
-const pokemonList = document.querySelector('#pokemonList');
-const searchBar = document.querySelector('#searchBar');
-const regionFilter = document.querySelector('#regionFilter');
-const typeFilter = document.querySelector('#typeFilter');
-const resetFilters = document.querySelector('#resetFilters');
-const teamContainer = document.querySelector('#teamContainer');
+const pokemonList = document.querySelector("#pokemonList");
+
+const searchBar = document.querySelector("#searchBar");
+
+const regionFilter = document.querySelector("#regionFilter");
+
+const typeFilter = document.querySelector("#typeFilter");
+
+const resetFilters = document.querySelector("#resetFilters");
+
+const loadMoreButton = document.createElement("button");
+const maincontainer = document.querySelector("#MainContainer");
+
+loadMoreButton.textContent = "Afficher plus de Pokémon";
+
+loadMoreButton.id = "loadMore";
+
+maincontainer.appendChild(loadMoreButton);
+
+
 
 let allPokemon = []; // Stocke tous les Pokémon pour le filtrage
 
+let displayedPokemonCount = 0; // Compteur de Pokémon affichés
+
+const batchSize = 20; // Nombre de Pokémon affichés à la fois
+
+
+
 // Fonction pour récupérer les Pokémon
+
 async function fetchPokemon() {
+
     for (let i = 1; i <= 251; i++) {
+
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+
         const pokemon = await res.json();
+
         allPokemon.push(pokemon);
-        displayPokemon(pokemon);
+
     }
+
+
+
+    displayNextBatch(); // Affiche les 20 premiers Pokémon
+
 }
+
+
+
+// Fonction pour afficher un lot de Pokémon
+
+function displayNextBatch() {
+
+    const nextBatch = allPokemon.slice(displayedPokemonCount, displayedPokemonCount + batchSize);
+
+    nextBatch.forEach(displayPokemon);
+
+    displayedPokemonCount += batchSize;
+
+
+
+    if (displayedPokemonCount >= allPokemon.length) {
+
+        loadMoreButton.style.display = "none"; // Cacher le bouton si tout est affiché
+
+    }
+
+}
+
+
 
 // Fonction pour afficher un Pokémon sous forme de carte
+
 function displayPokemon(pokemon) {
+
     const pokemonCard = document.createElement("div");
 
+
+
     // On prend le premier type du Pokémon pour la couleur de l'ombre (box-shadow)
+
     const primaryType = pokemon.types[0].type.name;
+
     pokemonCard.classList.add("pokemon-card", primaryType);
 
+
+
     // Création des types sous forme de badges colorés
+
     const types = pokemon.types.map(t =>
+
         `<span class="type ${t.type.name}">${t.type.name}</span>`
+
     ).join(" ");
 
+
+
     pokemonCard.innerHTML = `
+
         <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}">
+
         <h3>${pokemon.name}</h3>
+
         <p>#${pokemon.id}</p>
+
         <div class="types">${types}</div>
+
         <button class="DetailsPokemon">Détails</button>
+
         <button class="AddToTeam">Ajouter à mon équipe</button>
+
     `;
 
+
+
     // Ajout de la carte Pokémon au conteneur
+
     pokemonList.appendChild(pokemonCard);
 
+
+
     // Ajout des événements après l'insertion dans le DOM
+
     const detailsButton = pokemonCard.querySelector(".DetailsPokemon");
+
     const addToTeamButton = pokemonCard.querySelector(".AddToTeam");
 
+
+
     detailsButton.addEventListener("click", () => showDetails(pokemon.id));
+
     addToTeamButton.addEventListener("click", () => addToTeam(pokemon.id));
+
 }
+
+
+
+// Gestion de l'affichage des nouveaux Pokémon
+
+loadMoreButton.addEventListener("click", displayNextBatch);
+
 
 
 // Fonction pour afficher les détails d'un Pokémon
+
 function showDetails(id) {
+
     window.location.href = `details.html?id=${id}`;
+
 }
+
 
 // Fonction pour filtrer les Pokémon en combinant région et type
 function applyFilters() {
