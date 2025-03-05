@@ -1,46 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../CSS/style.css">
+    <title>Pokédex</title>
     <script src="../JS/app.js" defer></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link rel="stylesheet" href="../CSS/style.css">
 </head>
 <body>
+
     <header id="HeaderFlex">
-        <h1 id="TitleHeader">POKEDEX</h1>
         <figure id="Logo">
-            <img src="" alt="">
+            <img src="../../IMG/logo-removebg-preview.png" alt="Pokédex">
         </figure>
-        
-        <div id="SearchContainer">
-            <input type="text" id="searchBar" placeholder="" >
-            
-        <span class="material-symbols-outlined">
-            search
-            </span>
-            <span id="Info-Search"></span>
-
-        </div>
-        
-        
-        </header>
-        <main id="MainContainer">
-            <section id="pokemonList">
-
-                <!-- Liste des Pokémon -->
-        
-            </section>
-            <footer>
-                <p>Projet Pokedex - RIAL Fares</p>
-            </footer>
-
-        </main>
-        
-        
     
+        <div id="SearchContainer">
+            <input type="text" id="searchBar" placeholder="Rechercher un Pokémon...">
+        </div>
+    
+        <div id="Filters">
+            <select id="regionFilter">
+                <option value="all">Toutes les régions</option>
+                <option value="kanto">Kanto</option>
+                <option value="johto">Johto</option>
+                <option value="hoenn">Hoenn</option>
+            </select>
+    
+            <select id="typeFilter">
+                <option value="all">Tous les types</option>
+                <option value="fire">Feu</option>
+                <option value="water">Eau</option>
+                <option value="grass">Plante</option>
+                <option value="electric">Électrique</option>
+            </select>
+    
+            <button id="resetFilters">Réinitialiser</button>
+        </div>
+    </header>
+    
+
+    <main id="MainContainer">
+
+        <section id="MyTeam">
+            <h2>Mon Équipe Pokémon</h2>
+            <div id="teamContainer"></div>
+        </section>
+
+        <section id="pokemonList">
+            <!-- Liste des Pokémon -->
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Projet Pokédex - RIAL Fares</p>
+    </footer>
+
 </body>
+<!-- Animation Pokéball -->
+<div id="pokeball-animation">
+    <img src="../../IMG/pokeball.gif" alt="Pokéball Animation">
+</div>
+
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détails du pokemon</title>
+    <title>Détails du Pokémon</title>
     <script src="../JS/details.js" defer></script>
     <link rel="stylesheet" href="../CSS/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
@@ -11,51 +11,38 @@
 </head>
 <body>
     <header id="HeaderFlex">
-        <!--Logo -->
+        <a class="Retour-Arrière" onclick="goBack()">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </a>
+    </header>
 
+    <main id="MainContainer">
+        <section id="pokemonDetails">
+            <div id="Card-Details">
+                <img id="pokemonImage" src="" alt="">
+                <h2 id="pokemonName"></h2>
+                <p id="pokemonDescription"></p>
+            </div>
 
-        <figure id="Logo">
-            <img src="" alt="">
-        </figure>
-        
-        <div id="SearchContainer">
-            <input type="text" id="searchBar" placeholder="Rechercher un Pokémon..." >
-        <span class="material-symbols-outlined">
-            search
-            </span>
+            <div id="TypeSection">
+                <h3>Type</h3>
+                <div id="pokemonTypes"></div>
+            </div>
 
-        </div>
-        <a class="Retour-Arrière" onclick="goBack()"><span class="material-symbols-outlined">
-            arrow_back
-            </span></a>
-        
-        
-        </header>
-        <main id="MainContainer">
-            <section id="pokemonDetails">
-                <div id="Card-Details">
+            <div id="Stats">
+                <h3>Statistiques</h3>
+                <div id="statsContainer"></div>
+            </div>
 
-                </div>
-
-                <div id="Description">
-
-
-                </div>
-
-                <div id="Stats">
-
-                </div>
-        
-            </section>
-
-        </main>
-
-    
+            <div id="Evolutions">
+                <h3>Évolutions</h3>
+                <div id="evolutionChain"></div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>Projet Pokedex - RIAL Fares</p>
+        <p>Projet Pokédex - RIAL Fares</p>
     </footer>
-
-    
 </body>
 </html>
