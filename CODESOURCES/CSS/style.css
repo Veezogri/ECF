@@ -915,6 +915,15 @@ footer {
         padding: 15px;
     }
 
+    .Retour-Arrière{
+        position: absolute;
+        left: 10px;
+    }
+
+    #Stats{
+        width: 100%;
+    }
+
     #Card-Details {
         width: 100%;
         padding: 15px;
@@ -964,6 +973,10 @@ footer {
 @media screen and (max-width: 1024px) {
     #pokemonDetails {
         width: 85%;
+    }
+
+    #Stats{
+        width: 100%;
     }
 
     #Card-Details {
