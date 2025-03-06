@@ -32,21 +32,23 @@ const batchSize = 20; // Nombre de Pokémon affichés à la fois
 // Fonction pour récupérer les Pokémon
 
 async function fetchPokemon() {
+    try {
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${batchSize}&offset=${displayedPokemonCount}`);
+        const data = await res.json();
 
-    for (let i = 1; i <= 251; i++) {
+        const pokemonDetailsPromises = data.results.map(async (pokemon) => {
+            const res = await fetch(pokemon.url);
+            return res.json();
+        });
 
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
+        const pokemonDetails = await Promise.all(pokemonDetailsPromises);
 
-        const pokemon = await res.json();
+        allPokemon.push(...pokemonDetails); // Stocker les Pokémon récupérés
 
-        allPokemon.push(pokemon);
-
+        displayNextBatch(); // Afficher les Pokémon récupérés
+    } catch (error) {
+        console.error("Erreur lors du chargement des Pokémon :", error);
     }
-
-
-
-    displayNextBatch(); // Affiche les 20 premiers Pokémon
-
 }
 
 
@@ -54,22 +56,17 @@ async function fetchPokemon() {
 // Fonction pour afficher un lot de Pokémon
 
 function displayNextBatch() {
-
     const nextBatch = allPokemon.slice(displayedPokemonCount, displayedPokemonCount + batchSize);
-
+    
     nextBatch.forEach(displayPokemon);
-
+    
     displayedPokemonCount += batchSize;
 
-
-
-    if (displayedPokemonCount >= allPokemon.length) {
-
-        loadMoreButton.style.display = "none"; // Cacher le bouton si tout est affiché
-
+    if (displayedPokemonCount >= 1304) {
+        loadMoreButton.style.display = "none"; // Cacher le bouton quand tout est affiché
     }
-
 }
+
 
 
 
@@ -141,7 +138,10 @@ function displayPokemon(pokemon) {
 
 // Gestion de l'affichage des nouveaux Pokémon
 
-loadMoreButton.addEventListener("click", displayNextBatch);
+loadMoreButton.addEventListener("click", () => {
+    fetchPokemon();
+});
+
 
 
 
@@ -156,9 +156,11 @@ function showDetails(id) {
 
 // Fonction pour filtrer les Pokémon en combinant région et type
 function applyFilters() {
+    const searchText = searchBar.value.toLowerCase();
     const region = regionFilter.value;
     const type = typeFilter.value;
 
+    // Filtrer tous les Pokémon (pas seulement ceux affichés)
     let filteredPokemon = allPokemon;
 
     // Filtrage par région
@@ -173,23 +175,39 @@ function applyFilters() {
         filteredPokemon = filteredPokemon.filter(p => p.types.some(t => t.type.name === type));
     }
 
+    // Filtrage par recherche (nom ou numéro)
+    if (searchText) {
+        filteredPokemon = filteredPokemon.filter(p =>
+            p.name.includes(searchText) || p.id.toString() === searchText
+        );
+    }
+
     // Affichage des Pokémon filtrés
     pokemonList.innerHTML = "";
-    filteredPokemon.forEach(displayPokemon);
+
+    if (filteredPokemon.length > 0) {
+        filteredPokemon.forEach(displayPokemon);
+        document.getElementById("noResultsMessage").style.display = "none"; // Cacher le message d'erreur
+    } else {
+        document.getElementById("noResultsMessage").style.display = "block"; // Afficher le message d'erreur
+    }
 }
 
-// Écouteurs pour les filtres
+// Appliquer les filtres et recherche en temps réel
 regionFilter.addEventListener("change", applyFilters);
 typeFilter.addEventListener("change", applyFilters);
+searchBar.addEventListener("keyup", applyFilters);
 
 // Réinitialisation des filtres
 resetFilters.addEventListener("click", () => {
     regionFilter.value = "all";
     typeFilter.value = "all";
     searchBar.value = "";
+    document.getElementById("noResultsMessage").style.display = "none"; // Cacher le message d'erreur
     pokemonList.innerHTML = "";
-    allPokemon.forEach(displayPokemon);
+    allPokemon.slice(0, displayedPokemonCount).forEach(displayPokemon);
 });
+
 
 // Recherche par nom ou numéro
 searchBar.addEventListener("keyup", (e) => {
@@ -202,28 +220,33 @@ searchBar.addEventListener("keyup", (e) => {
 
 // Fonction pour ajouter un Pokémon à l'équipe
 function addToTeam(id) {
+    // Récupérer les Pokémon déjà enregistrés dans localStorage
+    let team = JSON.parse(localStorage.getItem("pokemonTeam")) || [];
+
+    // Vérifier si le Pokémon est déjà dans l'équipe (éviter les doublons)
+    if (team.some(pokemon => pokemon.id === id)) {
+        alert("Ce Pokémon est déjà dans votre équipe !");
+        return;
+    }
+
+    // Trouver le Pokémon dans la liste
     const pokemon = allPokemon.find(p => p.id === id);
     if (!pokemon) return;
 
-    // Affiche l'animation de la Pokéball en appelant la fonction pour
-    showPokeballAnimation(() => {
-        // Ajouter le Pokémon après l'animation
-        const teamCard = document.createElement("div");
-        teamCard.classList.add("pokemon-card");
-
-        teamCard.innerHTML = `
-            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-            <h3>${pokemon.name}</h3>
-            <button class="removeFromTeam">Retirer</button>
-        `;
-
-        teamContainer.appendChild(teamCard);
-
-        // Ajout de l'événement pour retirer le Pokémon
-        const removeButton = teamCard.querySelector(".removeFromTeam");
-        removeButton.addEventListener("click", () => removeFromTeam(id, teamCard));
+    // Ajouter le Pokémon à l'équipe
+    team.push({
+        id: pokemon.id,
+        name: pokemon.name,
+        sprite: pokemon.sprites.front_default
     });
+
+    // Sauvegarder l'équipe mise à jour dans localStorage
+    localStorage.setItem("pokemonTeam", JSON.stringify(team));
+
+    // Afficher un message de confirmation
+    alert(`${pokemon.name} a été ajouté à votre équipe !`);
 }
+
 function showPokeballAnimation(callback) {
     const pokeball = document.getElementById("pokeball-animation");
     pokeball.style.display = "block";

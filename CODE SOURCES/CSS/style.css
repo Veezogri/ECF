@@ -268,6 +268,45 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 }
 
+/* Bouton "Afficher plus" stylisé */
+#loadMore {
+    display: block;
+    margin: 10px auto;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #ff1c1c;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+#loadMore:hover {
+    background-color: #d01818;
+    transform: scale(1.05);
+}
+
+#loadMore:active {
+    transform: scale(0.95);
+}
+
+/* Message d'erreur pour les recherches et filtres */
+#noResultsMessage {
+    display: none;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff1c1c;
+    background-color: #ffecec;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(255, 28, 28, 0.3);
+}
+
 /*  COULEUR DE FOND PAR TYPE  */
 .pokemon-card.grass { box-shadow: 0px 4px 12px #1c4a05; }
 .pokemon-card.fire { box-shadow: 0 4px 12px #F08030; }
@@ -1106,4 +1145,70 @@ footer {
     font-size: larger;
     margin-top: 2cap;
 
+}
+
+
+#teamContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.team-card {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    width: 180px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.team-card img {
+    width: 100px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.team-card img:hover {
+    transform: scale(1.15);
+}
+
+.team-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #333;
+}
+
+.removeFromTeam {
+    background: #ff1c1c;
+    color: white;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background 0.3s ease-in-out;
+    margin-top: 8px;
+}
+
+.removeFromTeam:hover {
+    background: #d01818;
+}
+
+.empty-team {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: gray;
+    padding: 20px;
 }
