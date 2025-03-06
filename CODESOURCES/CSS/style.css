@@ -1357,8 +1357,195 @@ footer {
 }
 
 @media screen and (max-width: 600px){
-    
+
     
 
     
+}
+
+
+
+body {
+	font-family: 'Poppins', sans-serif;
+	background: linear-gradient(to right, #1a1a1a, #444);
+	color: white;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+
+#ComparaisonTitle {
+	font-size: 2rem;
+	margin-bottom: 10px;
+}
+a {
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+}
+a:hover {
+	text-decoration: underline;
+}
+#selectors {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+	margin-top: 20px;
+}
+select, button {
+	padding: 12px 15px;
+	border-radius: 8px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+select {
+	background: white;
+	color: black;
+	border: 2px solid #ff1c1c;
+	font-weight: bold;
+}
+button {
+	background: #ff1c1c;
+	color: white;
+	border: none;
+	font-weight: bold;
+	transition: all 0.3s ease-in-out;
+}
+button:hover {
+	background: #d01818;
+}
+
+#comparisonResults {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 40px;
+	margin-top: 30px;
+}
+
+.pokemon-box {
+	background: white;
+	padding: 20px;
+	border-radius: 16px;
+	width: 300px;
+	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+	text-align: center;
+	transition: transform 0.3s ease-in-out;
+}
+.pokemon-box:hover {
+	transform: scale(1.05);
+}
+.pokemon-box h2 {
+	color: black;
+	font-size: 1.5rem;
+	margin-bottom: 10px;
+}
+.pokemon-box img {
+	width: 150px;
+	animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float {
+	0% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+	100% {
+		transform: translateY(0px);
+	}
+}
+
+.versus {
+	font-size: 3rem;
+	font-weight: bold;
+	color: #ff1c1c;
+	animation: flash 1.5s infinite alternate;
+}
+
+@keyframes flash {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0.5;
+	}
+}
+
+.stat {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 10px;
+}
+.stat-name {
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #333;
+}
+.stat-bar {
+	width: 70%;
+	height: 10px;
+	background: #ddd;
+	border-radius: 5px;
+	overflow: hidden;
+	position: relative;
+}
+.stat-fill {
+	height: 100%;
+	background: linear-gradient(to right, #4CAF50, #66BB6A);
+	transition: width 0.5s ease-in-out;
+}
+
+.winner {
+	background: linear-gradient(to right, #4CAF50, #66BB6A);
+	box-shadow: 0px 0px 10px rgba(76, 175, 80, 0.7);
+}
+.loser {
+	background: linear-gradient(to right, #F44336, #E53935);
+	box-shadow: 0px 0px 10px rgba(244, 67, 54, 0.7);
+}
+
+@media screen and (max-width: 768px) {
+	#comparisonResults {
+		flex-direction: column;
+		gap: 20px;
+	}
+	.pokemon-box {
+		width: 90%;
+	}
+	.versus {
+		font-size: 2.5rem;
+	}
+}
+
+
+
+#notification-container {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	z-index: 1000;
+}
+.notification {
+	padding: 12px 18px;
+	border-radius: 8px;
+	font-size: 1rem;
+	font-weight: bold;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+	transition: opacity 0.3s ease-in-out;
+}
+.notification.success {
+	background: #4CAF50;
+	color: white;
+}
+.notification.error {
+	background: #F44336;
+	color: white;
 }

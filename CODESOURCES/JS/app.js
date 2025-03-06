@@ -31,7 +31,7 @@ let allPokemon = []; // Stocke tous les Pokémon pour le filtrage
 
 let displayedPokemonCount = 0; // Compteur de Pokémon affichés
 
-const batchSize = 4; // Nombre de Pokémon affichés à la fois
+const batchSize = 20; // Nombre de Pokémon affichés à la fois
 
 // fonction qui va chercher les pokemon de x à y (batchSize)
 // limit=y&offset=x
@@ -234,12 +234,33 @@ searchBar.addEventListener("keyup", (e) => {
         .forEach(displayPokemon);
 });
 
+const notificationContainer = document.createElement("div");
+notificationContainer.id = "notification-container";
+document.body.appendChild(notificationContainer);
+
+function showNotification(message, success = true) {
+    const notification = document.createElement("div");
+    notification.classList.add("notification");
+    notification.textContent = message;
+    if (success) {
+        notification.classList.add("success");
+    } else {
+        notification.classList.add("error");
+    }
+    notificationContainer.appendChild(notification);
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+addToTeam();
+
 // Fonction pour ajouter un Pokémon à l'équipe
 function addToTeam(id) {
     let team = JSON.parse(localStorage.getItem("pokemonTeam")) || [];
 
     if (team.some(pokemon => pokemon.id === id)) {
-        return; // Pas d'alerte inutile
+        showNotification("Ce Pokémon est déjà dans votre équipe !", false);
+        return; 
     }
 
     const pokemon = allPokemon.find(p => p.id === id);
@@ -255,6 +276,7 @@ function addToTeam(id) {
         });
 
         localStorage.setItem("pokemonTeam", JSON.stringify(team));
+        showNotification(`${pokemon.name} a été ajouté à votre équipe !`);
 
         // Réafficher la liste après l'animation
         pokemonList.innerHTML = ""; // On vide la liste
