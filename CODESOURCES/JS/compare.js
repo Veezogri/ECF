@@ -52,4 +52,37 @@ document.addEventListener("DOMContentLoaded", async() => {
 
     function displayPokemon(container, pokemon) {
         const types = pokemon.types.map(t => `<span class="type ${t.type.name}">${t.type.name}</span>`).join(" ");
-        container.innerHTML = ` <h2>${pokemon.name} (#${pokemon.id})</h2> <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}"> <div class="types">${types}</div> <div class="stats"> ${pokemon.stats.map(s => ` <div class="stat"> <span class="stat-name">${s.stat.name}</span> <div class="stat-bar"> <div class="stat-fill ${s.stat.name}" data-value="${s.base_stat}" style="width: ${s.base_stat}%"></div> <span class="stat-value">${s.base_stat}</span> </div> </div> `).join("")} </div> `; } function highlightBetterStats(pokemon1, pokemon2) { const stats1 = pokemon1.stats; const stats2 = pokemon2.stats; stats1.forEach((stat, index) => { const statName = stat.stat.name; const stat1Value = stat.base_stat; const stat2Value = stats2[index].base_stat; const bar1 = pokemon1Box.querySelector(`.stat-fill.${statName}`); const bar2 = pokemon2Box.querySelector(`.stat-fill.${statName}`); if (stat1Value > stat2Value) { bar1.classList.add("winner"); bar2.classList.add("loser"); } else if (stat2Value > stat1Value) { bar2.classList.add("winner"); bar1.classList.add("loser"); } else { bar1.classList.remove("winner", "loser"); bar2.classList.remove("winner", "loser"); } }); } compareButton.addEventListener("click", comparePokemon); fetchAllPokemon(); });
+        container.innerHTML = ` <h2>${pokemon.name} (#${pokemon.id})</h2>
+        <img src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}">
+        <div class="types">${types}</div>
+            <div class="stats">
+                ${pokemon.stats.map(s => ` <div class="stat">
+                <span class="stat-name">${s.stat.name}</span>
+                    <div class="stat-bar">
+                        <div class="stat-fill ${s.stat.name}" data-value="${s.base_stat}" style="width: ${s.base_stat}%">
+                    </div>
+                <span class="stat-value">${s.base_stat}</span>
+            </div>
+        </div> `).join("")}
+        </div> `; } 
+        
+        function highlightBetterStats(pokemon1, pokemon2) {
+            const stats1 = pokemon1.stats; 
+            const stats2 = pokemon2.stats; 
+            stats1.forEach((stat, index) => { 
+                const statName = stat.stat.name; 
+                const stat1Value = stat.base_stat; 
+                const stat2Value = stats2[index].base_stat; 
+                const bar1 = pokemon1Box.querySelector(`.stat-fill.${statName}`); 
+                const bar2 = pokemon2Box.querySelector(`.stat-fill.${statName}`); 
+                if (stat1Value > stat2Value) { bar1.classList.add("winner"); 
+                    bar2.classList.add("loser"); } 
+                    else if (stat2Value > stat1Value) { 
+                        bar2.classList.add("winner"); 
+                        bar1.classList.add("loser"); } 
+                        else { bar1.classList.remove("winner", "loser"); 
+                                bar2.classList.remove("winner", "loser"); 
+                            } 
+                        }); 
+                    } 
+                    compareButton.addEventListener("click", comparePokemon); fetchAllPokemon(); });

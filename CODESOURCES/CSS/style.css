@@ -7,23 +7,14 @@
 /* Header de la page d'accueil */ 
 
 .team-button {
-
     display: inline-block;
-
     background-color: #ff1c1c;
-
     color: white;
-
     padding: 10px 15px;
-
     border-radius: 8px;
-
     text-decoration: none;
-
     font-weight: bold;
-
     transition: background 0.3s ease-in-out;
-
     margin: 10px 0;
 
 }
@@ -48,8 +39,7 @@
 }
 
 #HeaderNavMonEquipe img{
-    width: 50px;
-    
+    width: 50px;  
 
 }
 
@@ -432,16 +422,16 @@ button.AddToTeam i, button.ComparePokemon i {
         
     }
 
-    /* Masquer le texte des boutons */
+    /* Masque le texte des boutons */
     .button-text {
         display: none;
     }
-    /* Ajuster la taille des icônes pour les petits écrans */
+    /* Ajuste la taille des icônes pour les petits écrans */
     button.AddToTeam i, button.ComparePokemon i {
         margin-right: 0;
         font-size: 20px;
     }
-    /* Ajuster la taille des boutons pour les petits écrans */
+    /* Ajuste la taille des boutons pour les petits écrans */
     button.AddToTeam, button.ComparePokemon {
         padding: 8px;
         font-size: 14px;
@@ -562,8 +552,7 @@ footer {
 	box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Page details */ 
-/* Amélioration du style de la page détails */
+
 /*  PAGE DETAILS  */
 #pokemonDetails {
     padding: 20px 40px;

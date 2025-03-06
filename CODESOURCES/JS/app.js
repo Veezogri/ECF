@@ -1,11 +1,8 @@
 const pokemonList = document.querySelector("#pokemonList");
 const searchBar = document.querySelector("#searchBar");
 const regionFilter = document.querySelector("#regionFilter");
-
 const typeFilter = document.querySelector("#typeFilter");
-
 const resetFilters = document.querySelector("#resetFilters");
-
 const loadMoreButton = document.createElement("button");
 const maincontainer = document.querySelector("#MainContainer");
 
@@ -15,7 +12,7 @@ document.addEventListener("click", (e) => {
     if (e.target.classList.contains("ComparePokemon")) {
         const selectedPokemonId = e.target.getAttribute("data-id");
         localStorage.setItem("comparePokemon1", selectedPokemonId);
-        window.location.href = "CODESOURCES/HTML/compare.html"; // Redirige vers la page de comparaison
+        window.location.href = "CODESOURCES/HTML/compare.html"; // ça me redirige vers la page de comparaison
     }
 });
 
@@ -29,7 +26,7 @@ let allPokemon = []; // Stocke tous les Pokémon pour le filtrage
 
 let displayedPokemonCount = 0; // Compteur de Pokémon affichés
 
-const batchSize = 2; // Nombre de Pokémon affichés à la fois
+const batchSize = 20; // Nombre de Pokémon affichés à la fois
 
 // fonction qui va chercher les pokemon de x à y (batchSize)
 // limit=y&offset=x
@@ -69,7 +66,7 @@ function displayNextBatch() {
     displayedPokemonCount += batchSize;
 
     if (displayedPokemonCount >= 1304) {
-        loadMoreButton.style.display = "none"; // Cacher le bouton quand tout est affiché
+        loadMoreButton.style.display = "none"; // Cache le bouton quand tout est affiché
     }
 }
 
@@ -82,16 +79,11 @@ function displayPokemon(pokemon) {
 
     const pokemonCard = document.createElement("div");
 
-
-
     // On prend le premier type du Pokémon pour la couleur de l'ombre (box-shadow)
 
     const primaryType = pokemon.types[0].type.name;
 
     pokemonCard.classList.add("pokemon-card", primaryType);
-
-
-
     // Création des types sous forme de badges colorés
 
     const types = pokemon.types.map(t =>
@@ -125,27 +117,15 @@ function displayPokemon(pokemon) {
             </button>
         </div>
     `;
-
-
-
     // Ajout de la carte Pokémon au conteneur
 
     pokemonList.appendChild(pokemonCard);
-
-
-
     // Ajout des événements après l'insertion dans le DOM
 
     const detailsButton = pokemonCard.querySelector(".DetailsPokemon");
-
     const addToTeamButton = pokemonCard.querySelector(".AddToTeam");
-
-
-
     detailsButton.addEventListener("click", () => showDetails(pokemon.id));
-
     addToTeamButton.addEventListener("click", () => addToTeam(pokemon.id));
-
 }
 
 
@@ -182,6 +162,8 @@ function applyFilters() {
         filteredPokemon = filteredPokemon.filter(p => p.id <= 151);
     } else if (region === "johto") {
         filteredPokemon = filteredPokemon.filter(p => p.id > 151 && p.id <= 251);
+    }else if (region === "Hoenn"){
+        filteredPokemon = filteredPokemon.filter(p => p.id > 251);
     }
 
     // Filtrage par type
@@ -264,7 +246,7 @@ function addToTeam(id) {
     const pokemon = allPokemon.find(p => p.id === id);
     if (!pokemon) return;
 
-    // Cacher la liste et le bouton "Afficher plus" pendant l'animation
+    // Cache la liste et le bouton "Afficher plus" pendant l'animation
     loadMoreButton.style.display = "none";
     showPokeballAnimation(() => {
         team.push({
@@ -276,7 +258,7 @@ function addToTeam(id) {
         localStorage.setItem("pokemonTeam", JSON.stringify(team));
         showNotification(`${pokemon.name} a été ajouté à votre équipe !`);
 
-        // Réafficher la liste après l'animation
+        // Réaffiche la liste après l'animation
         pokemonList.innerHTML = ""; // On vide la liste
         displayedPokemonCount = 0;  // On remet le compteur à zéro
         fetchPokemon();  // On recharge les Pokémon
@@ -286,7 +268,7 @@ function addToTeam(id) {
 function showPokeballAnimation(callback) {
     const pokeball = document.getElementById("pokeball-animation");
 
-    // Masquer la liste et le bouton "Afficher plus" pour voir uniquement l'animation
+    // Masque la liste et le bouton "Afficher plus" pour voir uniquement l'animation
     pokemonList.style.display = "none";
     loadMoreButton.style.display = "none"; // Cache le bouton "Afficher plus"
 
@@ -295,7 +277,7 @@ function showPokeballAnimation(callback) {
     setTimeout(() => {
         pokeball.style.display = "none";
 
-        // Réafficher la liste après l'animation
+        // Réaffiche la liste après l'animation
         pokemonList.style.display = "grid"; // On remet l'affichage normal
         loadMoreButton.style.display = "block"; // On remet le bouton "Afficher plus"
 
@@ -312,5 +294,5 @@ function removeFromTeam(id, teamCard) {
 
 
 
-// Charger les Pokémon au démarrage
+// Charge les Pokémon au démarrage
 fetchPokemon();
