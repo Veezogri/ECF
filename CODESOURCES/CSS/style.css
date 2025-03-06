@@ -53,6 +53,7 @@
 
 }
 
+
 #HeaderNavMonEquipe{
     display: flex;
     justify-content: center;
@@ -176,6 +177,12 @@
 
 
 
+button.AddToTeam i, button.ComparePokemon i {
+    margin-right: 8px;
+}
+
+
+
 
 /*  FILTRES MODERNES  */
 #Filters {
@@ -262,7 +269,7 @@
 #loadMore {
     display: block;
     margin: 10px auto;
-    padding: 12px 20px;
+    padding: 12px 10px;
     font-size: 16px;
     font-weight: bold;
     color: white;
@@ -423,6 +430,21 @@
         
     }
 
+    /* Masquer le texte des boutons */
+    .button-text {
+        display: none;
+    }
+    /* Ajuster la taille des icônes pour les petits écrans */
+    button.AddToTeam i, button.ComparePokemon i {
+        margin-right: 0;
+        font-size: 20px;
+    }
+    /* Ajuster la taille des boutons pour les petits écrans */
+    button.AddToTeam, button.ComparePokemon {
+        padding: 8px;
+        font-size: 14px;
+    }
+
     
 
     .pokemon-card {
@@ -490,6 +512,8 @@
 		align-items: center;
         
 	}
+
+    
 	#Filters select, #resetFilters {
 		width: 100%;
 		display: flex;

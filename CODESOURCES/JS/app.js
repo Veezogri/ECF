@@ -117,10 +117,15 @@ function displayPokemon(pokemon) {
         <button class="DetailsPokemon">Détails</button>
 
         <div class="button-container">
-        <button class="AddToTeam">Ajouter à mon équipe</button>
-        <button class="ComparePokemon" data-id="${pokemon.id}">Comparer</button>
-    </div>
-
+            <button class="AddToTeam">
+                <i class="fas fa-user-plus"></i>
+                <span class="button-text">Ajouter à mon équipe</span>
+            </button>
+            <button class="ComparePokemon" data-id="${pokemon.id}">
+                <i class="fas fa-balance-scale"></i>
+                <span class="button-text">Comparer</span>
+            </button>
+        </div>
     `;
 
 
