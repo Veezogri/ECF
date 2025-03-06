@@ -1246,6 +1246,8 @@ footer {
 	gap: 40px;
 	margin-top: 20px;
 }
+
+
 .pokemon-box {
 	background: white;
 	padding: 20px;
@@ -1261,4 +1263,35 @@ footer {
 	font-size: 30px;
 	font-weight: bold;
 	align-self: center;
+}
+
+
+
+.winner {
+    background: linear-gradient(to right, #4CAF50, #66BB6A);
+    /* Vert gagnant */
+    box-shadow: 0px 0px 10px rgba(76, 175, 80, 0.7);
+}
+.loser {
+    background: linear-gradient(to right, #F44336, #E53935);
+    /* Rouge perdant */
+    box-shadow: 0px 0px 10px rgba(244, 67, 54, 0.7);
+}
+
+
+.ComparePokemon{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    text-transform: uppercase;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px 5px;
+    cursor: pointer;
+
+}
+
+.ComparePokemon:hover{
+    background-color: black;
+    color: white;
 }
