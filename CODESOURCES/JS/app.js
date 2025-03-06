@@ -116,8 +116,10 @@ function displayPokemon(pokemon) {
 
         <button class="DetailsPokemon">Détails</button>
 
+        <div class="button-container">
         <button class="AddToTeam">Ajouter à mon équipe</button>
         <button class="ComparePokemon" data-id="${pokemon.id}">Comparer</button>
+    </div>
 
     `;
 
