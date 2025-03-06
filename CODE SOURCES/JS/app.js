@@ -13,6 +13,14 @@ const maincontainer = document.querySelector("#MainContainer");
 
 loadMoreButton.textContent = "Afficher plus de Pokémon";
 
+document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("ComparePokemon")) {
+        const selectedPokemonId = e.target.getAttribute("data-id");
+        localStorage.setItem("comparePokemon1", selectedPokemonId);
+        window.location.href = "compare.html"; // Redirige vers la page de comparaison
+    }
+});
+
 loadMoreButton.id = "loadMore";
 
 maincontainer.appendChild(loadMoreButton);
@@ -109,6 +117,7 @@ function displayPokemon(pokemon) {
         <button class="DetailsPokemon">Détails</button>
 
         <button class="AddToTeam">Ajouter à mon équipe</button>
+        <button class="ComparePokemon" data-id="${pokemon.id}">Comparer</button>
 
     `;
 

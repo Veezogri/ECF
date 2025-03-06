@@ -1212,3 +1212,53 @@ footer {
     color: gray;
     padding: 20px;
 }
+
+
+/* Page comparaison */ 
+
+#comparisonContainer {
+	text-align: center;
+	padding: 20px;
+}
+#selectors {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+#selectors select, #compareButton {
+	padding: 10px;
+	font-size: 16px;
+	border-radius: 8px;
+}
+#compareButton {
+	background: #ff1c1c;
+	color: white;
+	border: none;
+	cursor: pointer;
+}
+#compareButton:hover {
+	background: #d01818;
+}
+#comparisonResults {
+	display: flex;
+	justify-content: center;
+	gap: 40px;
+	margin-top: 20px;
+}
+.pokemon-box {
+	background: white;
+	padding: 20px;
+	border-radius: 12px;
+	width: 300px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+.pokemon-box img {
+	width: 150px;
+}
+.versus {
+	font-size: 30px;
+	font-weight: bold;
+	align-self: center;
+}
