@@ -17,7 +17,7 @@ document.addEventListener("click", (e) => {
     if (e.target.classList.contains("ComparePokemon")) {
         const selectedPokemonId = e.target.getAttribute("data-id");
         localStorage.setItem("comparePokemon1", selectedPokemonId);
-        window.location.href = "compare.html"; // Redirige vers la page de comparaison
+        window.location.href = "CODESOURCES/HTML/compare.html"; // Redirige vers la page de comparaison
     }
 });
 
