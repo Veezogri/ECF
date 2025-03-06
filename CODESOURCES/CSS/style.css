@@ -1016,22 +1016,7 @@ footer {
         font-size: 13px;
     }
 }
-/*  ANIMATION POKÉBALL  */
-#pokeball-animation {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120px;
-    height: 120px;
-    display: none;
-    z-index: 1000;
-}
 
-#pokeball-animation img {
-    width: 100%;
-    animation: bouncePokeball 0.6s ease-in-out;
-}
 
 /* Effet de rebond */
 @keyframes bouncePokeball {
@@ -1289,6 +1274,16 @@ footer {
 #comparisonContainer {
 	text-align: center;
 	padding: 20px;
+    background-color: whitesmoke;
+    
+}
+
+#ComparaisonTitle{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    font-family: Jazz LET, fantasy;
+    
 }
 #selectors {
 	display: flex;
@@ -1348,3 +1343,15 @@ footer {
     box-shadow: 0px 0px 10px rgba(244, 67, 54, 0.7);
 }
 
+#pokeball-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 1000;
+}
+
+#pokeball-animation img {
+    width: 150px; 
+}

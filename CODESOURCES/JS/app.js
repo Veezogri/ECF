@@ -236,42 +236,51 @@ searchBar.addEventListener("keyup", (e) => {
 
 // Fonction pour ajouter un Pokémon à l'équipe
 function addToTeam(id) {
-    // Récupérer les Pokémon déjà enregistrés dans localStorage
     let team = JSON.parse(localStorage.getItem("pokemonTeam")) || [];
 
-    // Vérifier si le Pokémon est déjà dans l'équipe (éviter les doublons)
     if (team.some(pokemon => pokemon.id === id)) {
-        alert("Ce Pokémon est déjà dans votre équipe !");
-        return;
+        return; // Pas d'alerte inutile
     }
 
-    // Trouver le Pokémon dans la liste
     const pokemon = allPokemon.find(p => p.id === id);
     if (!pokemon) return;
 
-    // Ajouter le Pokémon à l'équipe
-    team.push({
-        id: pokemon.id,
-        name: pokemon.name,
-        sprite: pokemon.sprites.front_default
+    // Cacher la liste et le bouton "Afficher plus" pendant l'animation
+    loadMoreButton.style.display = "none";
+    showPokeballAnimation(() => {
+        team.push({
+            id: pokemon.id,
+            name: pokemon.name,
+            sprite: pokemon.sprites.front_default
+        });
+
+        localStorage.setItem("pokemonTeam", JSON.stringify(team));
+
+        // Réafficher la liste après l'animation
+        pokemonList.innerHTML = ""; // On vide la liste
+        displayedPokemonCount = 0;  // On remet le compteur à zéro
+        fetchPokemon();  // On recharge les Pokémon
     });
-
-    // Sauvegarder l'équipe mise à jour dans localStorage
-    localStorage.setItem("pokemonTeam", JSON.stringify(team));
-
-    // Afficher un message de confirmation
-    alert(`${pokemon.name} a été ajouté à votre équipe !`);
 }
 
 function showPokeballAnimation(callback) {
     const pokeball = document.getElementById("pokeball-animation");
+
+    // Masquer la liste et le bouton "Afficher plus" pour voir uniquement l'animation
+    pokemonList.style.display = "none";
+    loadMoreButton.style.display = "none"; // Cache le bouton "Afficher plus"
+
     pokeball.style.display = "block";
 
-    // Attendre la fin de l'animation (800ms) avant d'ajouter le Pokémon
     setTimeout(() => {
         pokeball.style.display = "none";
+
+        // Réafficher la liste après l'animation
+        pokemonList.style.display = "grid"; // On remet l'affichage normal
+        loadMoreButton.style.display = "block"; // On remet le bouton "Afficher plus"
+
         if (callback) callback();
-    }, 800);
+    }, 1500); // Durée de l'animation (ajuste si nécessaire)
 }
 
 
