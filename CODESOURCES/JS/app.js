@@ -1,7 +1,5 @@
 const pokemonList = document.querySelector("#pokemonList");
-
 const searchBar = document.querySelector("#searchBar");
-
 const regionFilter = document.querySelector("#regionFilter");
 
 const typeFilter = document.querySelector("#typeFilter");
@@ -31,7 +29,7 @@ let allPokemon = []; // Stocke tous les Pokémon pour le filtrage
 
 let displayedPokemonCount = 0; // Compteur de Pokémon affichés
 
-const batchSize = 20; // Nombre de Pokémon affichés à la fois
+const batchSize = 2; // Nombre de Pokémon affichés à la fois
 
 // fonction qui va chercher les pokemon de x à y (batchSize)
 // limit=y&offset=x

@@ -1365,7 +1365,7 @@ footer {
 
 
 
-body {
+#CompareBody {
 	font-family: 'Poppins', sans-serif;
 	background: linear-gradient(to right, #1a1a1a, #444);
 	color: white;
