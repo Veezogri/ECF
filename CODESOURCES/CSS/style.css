@@ -1283,7 +1283,7 @@ footer {
     justify-content: center;
     padding: 10px 0;
     font-family: Jazz LET, fantasy;
-    
+
 }
 #selectors {
 	display: flex;
@@ -1354,4 +1354,11 @@ footer {
 
 #pokeball-animation img {
     width: 150px; 
+}
+
+@media screen and (max-width: 600px){
+    
+    
+
+    
 }
