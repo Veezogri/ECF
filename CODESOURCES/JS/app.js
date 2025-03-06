@@ -252,7 +252,7 @@ function showNotification(message, success = true) {
         notification.remove();
     }, 3000);
 }
-addToTeam();
+
 
 // Fonction pour ajouter un Pokémon à l'équipe
 function addToTeam(id) {
