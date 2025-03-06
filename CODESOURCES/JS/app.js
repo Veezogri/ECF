@@ -158,7 +158,7 @@ loadMoreButton.addEventListener("click", () => {
 
 function showDetails(id) {
 
-    window.location.href = `details.html?id=${id}`;
+    window.location.href = `CODESOURCES/HTML/details.html?id=${id}`;
 
 }
 
