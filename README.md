@@ -53,6 +53,9 @@ Sur les évolutions, j'ai mis une animations qui affiche 1 en 1 en essayant d'ê
 🎨 Flaticon pour les icônes stylées.
 
 
+⚠️ : 
+Le bouton comparaison peut avoir de la latence, au point de devoir cliquer autre part et re cliquer dessus pour qu'il lance la comparaison vers la page attribué.
+
 
  📸 Captures d’écran : 
 
