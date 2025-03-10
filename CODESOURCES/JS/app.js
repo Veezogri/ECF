@@ -26,7 +26,8 @@ let allPokemon = []; // Stocke tous les Pokémon pour le filtrage
 
 let displayedPokemonCount = 0; // Compteur de Pokémon affichés
 
-const batchSize = 20; // Nombre de Pokémon affichés à la fois
+const batchSize = 20;
+let isFiltering = false; // Nombre de Pokémon affichés à la fois
 
 // fonction qui va chercher les pokemon de x à y (batchSize)
 // limit=y&offset=x
@@ -76,6 +77,10 @@ function displayNextBatch() {
 // Fonction pour afficher un Pokémon sous forme de carte
 
 function displayPokemon(pokemon) {
+     //  Exclure les formes spéciales avec un ID > 1304
+     if (pokemon.id > 1304) {
+        return;
+    }
 
     const pokemonCard = document.createElement("div");
 
@@ -147,72 +152,89 @@ function showDetails(id) {
 
 }
 
+async function applyFilters() {
+    isFiltering = true;
+    pokemonList.innerHTML = ""; // Efface la liste pour afficher les résultats filtrés
+    loadMoreButton.style.display = "none"; // Cache le bouton "Afficher plus"
 
-// Fonction pour filtrer les Pokémon en combinant région et type
-function applyFilters() {
     const searchText = searchBar.value.toLowerCase();
     const region = regionFilter.value;
     const type = typeFilter.value;
 
-    // Filtrer tous les Pokémon (pas seulement ceux affichés)
-    let filteredPokemon = allPokemon;
+    let url = `https://pokeapi.co/api/v2/pokemon?limit=1304`; // On récupère tous les Pokémon pour le filtrage
 
-    // Filtrage par région
-    if (region === "kanto") {
-        filteredPokemon = filteredPokemon.filter(p => p.id <= 151);
-    } else if (region === "johto") {
-        filteredPokemon = filteredPokemon.filter(p => p.id > 151 && p.id <= 251);
-    }else if (region === "Hoenn"){
-        filteredPokemon = filteredPokemon.filter(p => p.id > 251);
-    }
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
 
-    // Filtrage par type
-    if (type !== "all") {
-        filteredPokemon = filteredPokemon.filter(p => p.types.some(t => t.type.name === type));
-    }
+        // Récupération des détails pour chaque Pokémon
+        const pokemonDetailsPromises = data.results.map(async (pokemon) => {
+            const res = await fetch(pokemon.url);
+            return res.json();
+        });
 
-    // Filtrage par recherche (nom ou numéro)
-    if (searchText) {
-        filteredPokemon = filteredPokemon.filter(p =>
-            p.name.includes(searchText) || p.id.toString() === searchText
-        );
-    }
+        const allPokemon = await Promise.all(pokemonDetailsPromises);
 
-    // Affichage des Pokémon filtrés
-    pokemonList.innerHTML = "";
+        // Appliquer les filtres après récupération des données
+        let filteredPokemon = allPokemon;
 
-    if (filteredPokemon.length > 0) {
-        filteredPokemon.forEach(displayPokemon);
-        document.getElementById("noResultsMessage").style.display = "none"; // Cacher le message d'erreur
-    } else {
-        document.getElementById("noResultsMessage").style.display = "block"; // Afficher le message d'erreur
+        // Filtrage par région
+        if (region === "kanto") {
+            filteredPokemon = filteredPokemon.filter(p => p.id <= 151);
+        } else if (region === "johto") {
+            filteredPokemon = filteredPokemon.filter(p => p.id > 151 && p.id <= 251);
+        } else if (region === "hoenn") {
+            filteredPokemon = filteredPokemon.filter(p => p.id > 251 && p.id <= 386);
+        }
+
+        // Filtrage par type
+        if (type !== "all") {
+            filteredPokemon = filteredPokemon.filter(p => p.types.some(t => t.type.name === type));
+        }
+
+        //  Filtrage par recherche (nom ou ID)
+        if (searchText) {
+            filteredPokemon = filteredPokemon.filter(p =>
+                p.name.includes(searchText) || p.id.toString() === searchText
+            );
+        }
+        
+        
+
+        //  Affichage des Pokémon filtrés
+        if (filteredPokemon.length > 0) {
+            filteredPokemon.forEach(displayPokemon);
+            document.getElementById("noResultsMessage").style.display = "none"; // Cacher message d'erreur
+        } else {
+            document.getElementById("noResultsMessage").style.display = "block"; // Afficher message d'erreur
+        }
+    } catch (error) {
+        console.error("Erreur lors du filtrage des Pokémon :", error);
     }
 }
 
-// Appliquer les filtres et recherche en temps réel
-regionFilter.addEventListener("change", applyFilters);
-typeFilter.addEventListener("change", applyFilters);
-searchBar.addEventListener("keyup", applyFilters);
-
 // Réinitialisation des filtres
 resetFilters.addEventListener("click", () => {
+    searchBar.value = "";
     regionFilter.value = "all";
     typeFilter.value = "all";
-    searchBar.value = "";
-    document.getElementById("noResultsMessage").style.display = "none"; // Cacher le message d'erreur
-    pokemonList.innerHTML = "";
-    allPokemon.slice(0, displayedPokemonCount).forEach(displayPokemon);
+    isFiltering = false; // Désactive le mode filtrage
+    pokemonList.innerHTML = ""; // Efface la liste actuelle
+    displayedPokemonCount = 0; // Remet le compteur à zéro
+    fetchPokemon(); // Recharge les Pokémon de base
+    loadMoreButton.style.display = "block"; // Réaffiche le bouton "Afficher plus"
 });
 
+//  Appliquer les filtres en temps réel
+searchBar.addEventListener("keyup", applyFilters);
+regionFilter.addEventListener("change", applyFilters);
+typeFilter.addEventListener("change", applyFilters);
 
-// Recherche par nom ou numéro
-searchBar.addEventListener("keyup", (e) => {
-    const searchText = e.target.value.toLowerCase();
-    pokemonList.innerHTML = "";
-    allPokemon
-        .filter(p => p.name.includes(searchText) || p.id.toString() === searchText)
-        .forEach(displayPokemon);
-});
+// Charger les premiers Pokémon au démarrage
+fetchPokemon();
+
+
+
 
 const notificationContainer = document.createElement("div");
 notificationContainer.id = "notification-container";
@@ -294,5 +316,3 @@ function removeFromTeam(id, teamCard) {
 
 
 
-// Charge les Pokémon au démarrage
-fetchPokemon();
