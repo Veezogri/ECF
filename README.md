@@ -53,9 +53,21 @@ Sur les évolutions, j'ai mis une animations qui affiche 1 en 1 en essayant d'ê
 🎨 Flaticon pour les icônes stylées.
 
 
+
+ 📸 Captures d’écran : 
+
+ 1. 📌 HOMEPAGE : 
  
-![landingPage](https://github.com/user-attachments/assets/8cf3dc6c-984c-4d8d-960c-f045bc4c40f0)
+ ![homepageECF](https://github.com/user-attachments/assets/9d0a454c-b574-421a-85aa-a11be09e294b)
+
+ 2. 📌 Page de comparaison :
+
 ![pagecomparaison](https://github.com/user-attachments/assets/da265ba5-812f-4777-8354-c51a6e9e2349)
+
+
+3. 📌 Page de détails :
+
+
 ![pagedetail](https://github.com/user-attachments/assets/6b72f674-ac7d-4798-bce5-f596a73308f8)
 
 
