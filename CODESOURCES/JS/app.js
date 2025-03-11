@@ -316,3 +316,28 @@ function removeFromTeam(id, teamCard) {
 
 
 
+const secretCode = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+let inputSequence = [];
+
+document.addEventListener("keydown", (e) => {
+    inputSequence.push(e.key);
+    inputSequence = inputSequence.slice(-secretCode.length); // ça me permet de garder uniquement les dernières entrées
+
+    if (inputSequence.join("") === secretCode.join("")) {
+        triggerSecretAnimation();
+    }
+});
+
+//  Fonction qui déclenche l’animation secrète
+function triggerSecretAnimation() {
+    const secret = document.createElement("div");
+    secret.classList.add("secret-animation");
+    secret.textContent = " Tu as découvert le KONAMI CODE ! ";
+    document.body.appendChild(secret);
+
+    // Supprimer l'animation après 5 secondes
+    setTimeout(() => {
+        secret.remove();
+    }, 5000);
+}
+

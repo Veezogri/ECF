@@ -1539,3 +1539,46 @@ button:hover {
 
 
 
+.easter-egg-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffcc00;
+    color: black;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    animation: fadeInOut 4s ease-in-out;
+}
+
+.secret-animation {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to right, #ff1c1c, #ff9a00);
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 22px;
+    font-weight: bold;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10000;
+    animation: bounce 0.6s infinite alternate;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes bounce {
+    0% { transform: translate(-50%, -50%) scale(1); }
+    100% { transform: translate(-50%, -52%) scale(1.1); }
+}
